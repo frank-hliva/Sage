@@ -30,6 +30,9 @@
         "frameworks": {
           "netstandard2.0": {
             "projectReferences": {
+              "C:\\Pluton.Projects\\MyLang\\Sage\\Sage.Memory\\Sage.Memory.fsproj": {
+                "projectPath": "C:\\Pluton.Projects\\MyLang\\Sage\\Sage.Memory\\Sage.Memory.fsproj"
+              },
               "C:\\Pluton.Projects\\MyLang\\Sage\\StdLib\\StdLib.fsproj": {
                 "projectPath": "C:\\Pluton.Projects\\MyLang\\Sage\\StdLib\\StdLib.fsproj"
               }
@@ -95,6 +98,9 @@
             "projectReferences": {
               "C:\\Pluton.Projects\\MyLang\\Sage\\Sage.Core.Object.Prototyped\\Sage.Core.Object.Prototyped.fsproj": {
                 "projectPath": "C:\\Pluton.Projects\\MyLang\\Sage\\Sage.Core.Object.Prototyped\\Sage.Core.Object.Prototyped.fsproj"
+              },
+              "C:\\Pluton.Projects\\MyLang\\Sage\\Sage.Memory\\Sage.Memory.fsproj": {
+                "projectPath": "C:\\Pluton.Projects\\MyLang\\Sage\\Sage.Memory\\Sage.Memory.fsproj"
               },
               "C:\\Pluton.Projects\\MyLang\\Sage\\StdLib\\StdLib.fsproj": {
                 "projectPath": "C:\\Pluton.Projects\\MyLang\\Sage\\StdLib\\StdLib.fsproj"

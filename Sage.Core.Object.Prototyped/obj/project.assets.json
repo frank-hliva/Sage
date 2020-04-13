@@ -289,6 +289,7 @@
   },
   "projectFileDependencyGroups": {
     ".NETStandard,Version=v2.0": [
+      "C:\\Pluton.Projects\\MyLang\\Sage\\Sage.Memory\\Sage.Memory.fsproj",
       "FSharp.Core >= 4.7.0",
       "NETStandard.Library >= 2.0.3",
       "StdLib >= 1.0.0"
@@ -324,6 +325,9 @@
       "frameworks": {
         "netstandard2.0": {
           "projectReferences": {
+            "C:\\Pluton.Projects\\MyLang\\Sage\\Sage.Memory\\Sage.Memory.fsproj": {
+              "projectPath": "C:\\Pluton.Projects\\MyLang\\Sage\\Sage.Memory\\Sage.Memory.fsproj"
+            },
             "C:\\Pluton.Projects\\MyLang\\Sage\\StdLib\\StdLib.fsproj": {
               "projectPath": "C:\\Pluton.Projects\\MyLang\\Sage\\StdLib\\StdLib.fsproj"
             }
@@ -360,5 +364,16 @@
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.201\\RuntimeIdentifierGraph.json"
       }
     }
-  }
+  },
+  "logs": [
+    {
+      "code": "NU1104",
+      "level": "Error",
+      "message": "Unable to find project 'C:\\Pluton.Projects\\MyLang\\Sage\\Sage.Memory\\Sage.Memory.fsproj'. Check that the project reference is valid and that the project file exists.",
+      "libraryId": "C:\\Pluton.Projects\\MyLang\\Sage\\Sage.Memory\\Sage.Memory.fsproj",
+      "targetGraphs": [
+        ".NETStandard,Version=v2.0"
+      ]
+    }
+  ]
 }
