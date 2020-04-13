@@ -1,0 +1,27 @@
+%%/*** FUNCTIONS ***/
+
+func:
+| funcKw argNames OP_RARROW expr { Function(true, $2, $4) }
+| NON_CURRIED funcKw argNames OP_RARROW expr { Function(false, $3, $5) }
+
+funcKw:
+| KW_FUNC { }
+| LAMBDA { }
+
+argNames:
+| { [] }
+| IDENTIFIER argNames { $1 :: $2 }
+| IDENTIFIER { [$1] }
+
+functionEval:
+| identifierOrPath args { FunctionEval(true, $1, $2) }
+| NON_CURRIED identifierOrPath args { FunctionEval(false, $2, $3) }
+
+args:
+| arg args { $1 :: $2 }
+| arg { [$1] }
+
+arg:
+| opNegate { $1 }
+| literalOrIdentifier { $1 }
+| wrappedExpr { $1 }

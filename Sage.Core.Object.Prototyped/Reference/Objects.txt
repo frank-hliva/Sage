@@ -1,0 +1,13 @@
+﻿- 2 keyword message 
+	- sa sklada z dvoch casti
+	- fixed musi byt dodrzane poradie parametrov
+	- volná poradie parametrov neni nutne dodrziavat
+	- placeholder: onlyKey message
+-------------------------------------------------------------------
+- metóda init - konštruktor
+- received
+	- zavolá sa pri prijatí správy
+	- podla priatej správy zavolá príslušnú metódu
+- notReceived
+	- zavolá sa v prípade ak správa nebola prijata
+- metóda free - niečo ako destruktor

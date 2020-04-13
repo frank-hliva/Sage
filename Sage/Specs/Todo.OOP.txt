@@ -1,0 +1,76 @@
+﻿- ak sa sprava posle triede
+	- tak sa autyomaticky vytvori instancia
+	- a potom sa jej posle sprava
+- poriesit self
+- poriesit super
+- module na pracu s objektami
+	- Object.assign
+	- Object.map
+	- Object.forEach
+	- Object.keys
+	- Object.clone
+- module Instance
+	- Instance.of
+	- Instance.from
+- sprintf
+- doesNotUnderstand
+
+- urobit podmienky na to aby sa dalo naimplementovat ifTrue: ifFalse 
+
+- operatory
+	- urobit skript na operatory
+	- uporavit syntax highlighter
+
+- pridat do jazyka
+- private protected public
+	- dva typy posielania spravy inside | outside
+	- inside 
+		- pristup ku vsetkemu
+	- outside
+		- pristup ku spravam
+- nazov triedy
+x - instanceof
+
+- zistit ako funguje reflect v perle ak sa da naimplementovat
+- zmenit nazvoslovie 
+- parent slots
+- prototypy
+	x - prepisat na modul
+	x - odtestovat
+	x - operatory
+	- pridat receiver method ktora sa bude dat prepisat
+	- pridat metodu ktora sa zavola ked sprava nebola priata
+	- pridat metodu ktora sa zavola ked sa sprava poslala atributu
+
+- objekty:
+	x - genObject - prerobit na map
+	x - Objects.source - musi prejst
+	- posielanie sprav
+	- poriesit moduly na styl ocaml
+	- is - zistí typ objektu
+	- addSlots
+
+- custom blok
+- {} - record
+
+------------------------------------------------------------
+
+- zdroje:
+
+	- https://ioke.org/wiki/index.php/Guide#Conditionals
+	- https://metacpan.org/pod/Class::Prototyped
+
+	- prototypy
+		- https://en.wikipedia.org/wiki/Self_(programming_language)#Description
+		- https://iolanguage.org/tutorial.html
+	- message passing
+		- https://www.zdrojak.cz/clanky/cappuccino-webove-aplikace-snadno-a-rychle/
+		- https://www.zdrojak.cz/clanky/zaklady-objective-j-syntaxe-a-framework-foundation/
+		- https://www.zdrojak.cz/clanky/cappuccino-uzivatelske-rozhrani-aplikace-a-appkit/
+		- https://www.zdrojak.cz/clanky/cappuccino-zobrazujeme-tabulku-s-daty/
+
+		- https://en.wikipedia.org/wiki/Objective-C
+
+		- http://switch2mac.blog.zive.cz/2010/09/programovani-na-os-x-%E2%80%93-objective-c-a-jeho-vyhody/
+		- http://switch2mac.blog.zive.cz/2010/10/programovani-na-os-x-%E2%80%93-objective-c-%E2%80%A6nevyhody-a-slaba-mista/
+		- http://switch2mac.blog.zive.cz/2010/10/programovani-na-os-x-%E2%80%93-cocoa-skvely-framework-pro-celou-rodinu%E2%80%A6/

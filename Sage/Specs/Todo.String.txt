@@ -1,0 +1,8 @@
+﻿- generovanie stringu
+	- "Hello world\n" sa skompiluje na "Hello world
+" čo neni dobre
+- interpolácia stringu "Hello \(name).\n" https://www.raywenderlich.com/599-object-oriented-programming-in-swift
+	- <Ast list> INTERPOLATED_STRING
+	- prerobiť parsovanie stringu
+		- "Hello \(name).\n"
+		INTERPOLATED_STRING([Str("Hello ");Interpolated(Identifier("name"));Str(".");Escaped("\n")])

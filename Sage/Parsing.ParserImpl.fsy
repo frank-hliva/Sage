@@ -1,0 +1,396 @@
+%{
+
+(* Parser specification for Sage Language *)
+open Sage
+open Sage.Parsing
+open Sage.Parsing.Checks
+%} 
+
+%start start
+
+
+%token LPAREN           // (
+%token RPAREN           // )
+%token LBRACKET         // [
+%token RBRACKET         // ]
+%token LBRACE           // {
+%token RBRACE           // }
+%token COMMA            // ,
+%token SEPARATOR        // ; || EOL
+%token POWER		    // ^
+%token COLON		    // :
+%token BAR              // |
+%token ANYTHING         // _
+%token NON_CURRIED      // ^
+
+%token OP_LARROW        // <-
+%token OP_RARROW        // ->
+
+%token OP_STAR          // *
+%token OP_DOUBLE_STAR   // **
+%token OP_DOUBLE_RARROW // =>
+%token OP_PLUS_RARROW   // +>
+%token OP_DOT           // .
+%token OP_SHARP         // #
+%token OP_JOIN          // &
+%token OP_BACK_SLASH    // \
+
+%token <string> STRING
+%token <decimal> NUMBER
+%token <string> SYMBOL
+%token <string> IDENTIFIER
+%token <string> OPERATOR
+%token <string> SINGLELINE_COMMENT
+%token <string> MULTILINE_COMMENT
+%token <string * int> WHITESPACES
+%token <string * int> INDENTATION
+
+%token KW_LET
+%token KW_IF
+%token KW_IF_NOT
+%token KW_THEN
+%token KW_ELSE
+%token KW_ELIF
+%token KW_ELIF_NOT
+%token KW_FUNC
+%token KW_MATCH
+
+%token KW_KIND
+%token KW_PROTOCOL
+%token KW_SELF
+%token KW_MODULE
+%token KW_PACKAGE
+
+%token KW_ALLOC
+%token KW_STACKALLOC
+
+%token OP_FORWARD_PIPE
+%token OP_BACKWARD_PIPE
+%token OP_FORWARD_COMPOSITOR
+%token OP_BACKWARD_COMPOSITOR
+
+%token OP_SPECIAL_ASSIGN
+
+%token OP_XOR
+%token OP_OR
+%token OP_AND
+
+%token OP_BITWISE_XOR
+%token OP_BITWISE_OR
+%token OP_BITWISE_AND
+%token OP_BITWISE_NOT
+
+%token OP_LESS_THAN
+%token OP_LESS_THAN_OR_EQUALS
+%token OP_GREATER_THAN
+%token OP_GREATER_THAN_OR_EQUALS
+%token OP_NOT_EQUALS
+%token OP_EQUALS_OR_ASSIGN
+%token OP_EQUALS
+
+%token OP_BITWISE_ZERO_FILL_LEFT_SHIFT
+%token OP_BITWISE_SIGNED_RIGHT_SHIFT
+%token OP_BITWISE_ZERO_FILL_RIGHT_SHIFT
+
+%token OP_APPEND // unused
+
+%token OP_ADDITION
+%token OP_SUBTRACT
+
+%token OP_MULTIPLY
+%token OP_DIVIDE
+%token OP_MODULO
+
+%token OP_NOT
+%token OP_NEGATE
+%token OP_SUCCESSOR
+%token OP_PREDECESSOR
+
+%token OP_POWER
+
+%token LAMBDA
+
+%token EOF
+
+%type <ast> start
+
+%%
+
+start: prog EOF { $1 }
+
+prog:
+| optSep KW_MODULE key optSep exprList { [Module($3, moduleType.Root, Block $5)] |> Convert.toRootExprList }
+| optSep exprList { Convert.toRootExprList $2 }
+
+expr:
+| LPAREN optSep expr optSep RPAREN args { ExprEval($3, $6) }
+| op { $1 }
+
+stat:
+| KW_LET IDENTIFIER OP_EQUALS_OR_ASSIGN expr { Let($2, $4) }
+| moduleDef { $1 }
+
+optSep:
+| { }
+| SEPARATOR { }
+
+exprList:
+| { [] }
+| stat { [$1] }
+| stat SEPARATOR exprList { $1 :: $3 }
+| expr { [$1] }
+| expr SEPARATOR exprList { $1 :: $3 }
+
+
+/*** LITERALS ***/
+
+primitiveLiteral:
+| STRING { Str $1 }
+| NUMBER { Number $1 }
+| SYMBOL { Convert.toSymbol $1 }
+| LPAREN RPAREN { Unit }
+
+literal:
+| primitiveLiteral { $1 }
+| listLiteral { $1 }
+| recordLiteral { $1 }
+
+identifierOrPath:
+| IDENTIFIER { Identifier $1 }
+| path { IdentifiersPath $1 }
+
+path:
+| IDENTIFIER OP_DOT path { $1 :: $3 }
+| IDENTIFIER { [$1] }
+
+literalOrIdentifier:
+| literal { $1 }
+| identifierOrPath { $1 }
+
+listLiteral:
+| LBRACKET optSep list optSep RBRACKET { List $3 }
+
+list:
+| optSep { [] }
+| optSep expr optSep { [$2] }
+| optSep expr optSep COMMA optSep list optSep { $2 :: $6 } 
+
+recordLiteral:
+| LBRACE optSep record optSep RBRACE { Record $3 }
+
+record:
+| { [] }
+| optSep key optSep COLON optSep expr optSep { [($2, $6)] }
+| optSep key optSep COLON optSep expr optSep COMMA optSep record { ($2, $6) :: $10 }
+| optSep IDENTIFIER optSep { [(Identifier $2, Identifier $2)] }
+| optSep IDENTIFIER optSep COMMA optSep record { (Identifier $2, Identifier $2) :: $6 }
+
+key:
+| IDENTIFIER { Identifier $1 }
+| STRING { Str $1 }
+| LBRACKET expr RBRACKET { $2 }
+
+/*** MODULES ***/
+
+moduleDef:
+| KW_LET IDENTIFIER OP_EQUALS_OR_ASSIGN KW_MODULE key block { Let($2, Module($5, moduleType.Assign, $6)) }
+| KW_LET IDENTIFIER OP_EQUALS_OR_ASSIGN KW_MODULE block { Let($2, Module(Identifier $2, moduleType.Assign, $5)) }
+| KW_MODULE key block { Module($2, moduleType.Normal, $3) }
+
+/*** MESSAGES ***/
+
+sendMessages:
+| receiver optSep optBar messageList { SendMessages($1, $4) }
+
+receiver:
+| OP_STAR literalOrIdentifier { $2 }
+| OP_STAR LPAREN optSep expr optSep RPAREN { $4 |> Parens }
+
+messageList:
+| message { [(Msg $1)] }
+| message OP_FORWARD_PIPE optBar messageList { (Msg $1) :: Pipe :: $4 }
+| message OP_JOIN optBar messageList { (Msg $1) :: Join :: $4 }
+
+message:
+| binaryMessage { BinaryMessage($1) }
+| keywordMessage { $1 |> KeywordMessage.toMessage }
+
+binaryMessage:
+| key OP_EQUALS_OR_ASSIGN expr { binaryMessage.Value($1, $3) }
+| key OP_EQUALS_OR_ASSIGN ANYTHING { binaryMessage.Undefined($1) }
+| key OP_EQUALS_OR_ASSIGN { binaryMessage.Undefined($1) }
+
+keywordMessage:
+| keyword { [$1] }
+| keyword optBar keywordMessage { $1 :: $3 }
+
+keyword:
+| key COLON expr { keyword.Value($1, $3) }
+| key COLON ANYTHING { keyword.Undefined($1) }
+| key COLON { keyword.Undefined($1) }
+| key { keyword.Placeholder($1) }
+
+/*** PATTERN MATCHING ***/
+
+matchingList:
+| matching { [$1] }
+| matching BAR matchingList { $1 :: $3 }
+
+matching: 
+| case OP_RARROW expr { ($1, Some $3) }
+| case { ($1, None) }
+
+case:
+| ANYTHING { case.Anything }
+| IDENTIFIER { case.CaseIdentifier $1 }
+| expr { case.Expr $1 }
+
+optBar:
+| { }
+| BAR { }
+
+/*** FUNCTIONS ***/
+
+func:
+| funcKw argNames OP_RARROW expr { Function(true, $2, $4) }
+| NON_CURRIED funcKw argNames OP_RARROW expr { Function(false, $3, $5) }
+
+funcKw:
+| KW_FUNC { }
+| LAMBDA { }
+
+argNames:
+| { [] }
+| IDENTIFIER argNames { $1 :: $2 }
+| IDENTIFIER { [$1] }
+
+functionEval:
+| identifierOrPath args { FunctionEval(true, $1, $2) }
+| NON_CURRIED identifierOrPath args { FunctionEval(false, $2, $3) }
+
+args:
+| arg args { $1 :: $2 }
+| arg { [$1] }
+
+arg:
+| opNegate { $1 }
+| literalOrIdentifier { $1 }
+| wrappedExpr { $1 }
+
+/*** OPERATORS ***/
+
+op:
+| op0 { $1 }
+
+op0:
+| op0 OP_SPECIAL_ASSIGN logicalOp1 { BinaryOperator("~=", $1, $3) }
+| logicalOp1 { $1 }
+
+/* LOGICAL */
+logicalOp1:
+| logicalOp1 OP_XOR logicalOp2 { BinaryOperator("xor", $1, $3) }
+| logicalOp2 { $1 }
+
+logicalOp2:
+| logicalOp2 OP_OR logicalOp3 { BinaryOperator("or", $1, $3) }
+| logicalOp3 { $1 }
+
+logicalOp3:
+| logicalOp3 OP_AND bitwiseOp1 { BinaryOperator("and", $1, $3) }
+| bitwiseOp1 { $1 }
+
+/* BITWISE (1) */
+bitwiseOp1:
+| bitwiseOp1 OP_BITWISE_XOR bitwiseOp2 { BinaryOperator("bw_xor", $1, $3) }
+| bitwiseOp2 { $1 }
+
+bitwiseOp2:
+| bitwiseOp2 OP_BITWISE_OR bitwiseOp3 { BinaryOperator("bw_or", $1, $3) }
+| bitwiseOp3 { $1 }
+
+bitwiseOp3:
+| bitwiseOp3 OP_BITWISE_AND bitwiseOp4 { BinaryOperator("bw_and", $1, $3) }
+| bitwiseOp4 { $1 }
+
+bitwiseOp4:
+| bitwiseOp4 OP_BITWISE_NOT op4 { BinaryOperator("bw_not", $1, $3) }
+| op4 { $1 }
+
+op4:
+| op4 OP_LESS_THAN bitwise_bit_shift { BinaryOperator("<", $1, $3) }
+| op4 OP_LESS_THAN_OR_EQUALS bitwise_bit_shift { BinaryOperator("<=", $1, $3) }
+| op4 OP_GREATER_THAN bitwise_bit_shift { BinaryOperator(">", $1, $3) }
+| op4 OP_GREATER_THAN_OR_EQUALS bitwise_bit_shift { BinaryOperator(">=", $1, $3) }
+| op4 OP_NOT_EQUALS bitwise_bit_shift { BinaryOperator("<>", $1, $3) }
+| op4 OP_EQUALS_OR_ASSIGN bitwise_bit_shift { BinaryOperator("=", $1, $3) }
+| op4 OP_EQUALS bitwise_bit_shift { BinaryOperator("=", $1, $3) }
+| bitwise_bit_shift { $1 }
+
+/* BITWISE (2) */
+bitwise_bit_shift:
+| bitwise_bit_shift OP_BITWISE_ZERO_FILL_LEFT_SHIFT op5 { BinaryOperator("<<:", $1, $3) }
+| bitwise_bit_shift OP_BITWISE_SIGNED_RIGHT_SHIFT op5 { BinaryOperator(":>>", $1, $3) }
+| bitwise_bit_shift OP_BITWISE_ZERO_FILL_RIGHT_SHIFT op5 { BinaryOperator(":>>>", $1, $3) }
+| op5 { $1 }
+
+op5:
+| op5 OP_APPEND op6 { BinaryOperator("%%", $1, $3) }
+| op6 { $1 }
+
+op6:
+| op6 OP_ADDITION op7 { BinaryOperator("+", $1, $3) }
+| op6 OP_SUBTRACT op7 { BinaryOperator("-", $1, $3) }
+| op7 { $1 }
+
+op7:
+| op7 OP_MULTIPLY op8 { BinaryOperator("*", $1, $3) }
+| op7 OP_DIVIDE op8 { BinaryOperator("/", $1, $3) } 
+| op7 OP_MODULO op8 { BinaryOperator("%", $1, $3) } 
+| op8 { $1 }
+
+opNegate:
+| OP_NEGATE op9 { UnaryOperator("-", $2) }
+
+op8:
+| OP_NOT op9 { UnaryOperator("!", $2) }
+| opNegate { $1 }
+| OP_SUCCESSOR op9 { UnaryOperator("succ", $2) }
+| OP_PREDECESSOR op9 { UnaryOperator("pred", $2) }
+| op9 { $1 }
+
+op9:
+| op9 OP_POWER exprMain { BinaryOperator("**", $1, $3) }
+| exprMain { $1 }
+
+
+
+/*** EXPRESSIONS ***/
+
+wrappedExpr:
+| LPAREN optSep expr optSep RPAREN { Parens $3 }
+| LPAREN optSep exprList optSep RPAREN { Convert.toExprList $3 }
+
+block:
+| LPAREN optSep expr optSep RPAREN { Block [$3] }
+| LPAREN optSep exprList optSep RPAREN { Block $3 }
+
+exprMain:
+| literalOrIdentifier { $1 }
+| wrappedExpr { $1 }
+| functionEval { $1 }
+| sendMessages { $1 }
+| func { $1 }
+| KW_IF expr optSep KW_THEN expr optSep KW_ELSE expr { If($2, $5, Some $8) }
+| KW_IF expr optSep KW_THEN expr { If($2, $5, None) }
+| KW_IF_NOT expr optSep KW_THEN expr optSep KW_ELSE expr { IfNot($2, $5, Some $8) }
+| KW_IF_NOT expr optSep KW_THEN expr { IfNot($2, $5, None) }
+| KW_MATCH expr COLON optSep optBar matchingList { Match($2, $6) }
+| opFunctional { $1 }
+
+/* FUNCTIONAL */
+opFunctional:
+| opFunctional OP_FORWARD_PIPE expr { BinaryOperator("|>", $1, $3) }
+| opFunctional OP_BACKWARD_PIPE expr { BinaryOperator("<|", $1, $3) }
+| opFunctional OP_FORWARD_COMPOSITOR expr { BinaryOperator(">>", $1, $3) }
+| opFunctional OP_BACKWARD_COMPOSITOR expr { BinaryOperator("<<", $1, $3) }
+| expr { $1 }

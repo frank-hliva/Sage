@@ -1,0 +1,17 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="Bit.fs" />
+    <Compile Include="String.fs" />
+    <Compile Include="StdLib.fs" />
+    <Compile Include="Text.fs" />
+    <Compile Include="Counter.fs" />
+    <Compile Include="IO.Path.fs" />
+    <Compile Include="List.fs" />
+  </ItemGroup>
+
+</Project>

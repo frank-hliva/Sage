@@ -1,0 +1,12 @@
+.vs/
+Sage/bin/
+Sage/obj/
+packages/
+rxx/bin/
+rxx/obj/
+*.exe
+*.dll
+*.pdb
+*.xml
+*.p7s
+*.cache

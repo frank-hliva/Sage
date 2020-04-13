@@ -1,0 +1,15 @@
+﻿- syntax highlighter
+- repl
+- autocomplete
+- web
+
+- CLAN Comprehensive Raspberry Archive Network
+
+- Capone
+
+Web:
+	- getting started
+		- info o tom ako sa to rozbehne
+		- preklik na tutorial a dokumentáciu
+	- dokumentácia
+	- online compiler

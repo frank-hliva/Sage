@@ -1,0 +1,22 @@
+- vygenerovat subor ktory sa prilinkuje k assembly
+- moduly
+    x - defaultny modul
+	x - ak je v roote len jeden modul tak defaultny modul nemusime balit do modulu
+	x - modul v roote nemusi byt ozatvorkovany
+	- operator .
+	- identifierOrPath premyslet ci tam namiesto IDENTIFIER nepojde key
+	- mozno pridat `` a ``
+	- zistit ci zoberie aj modul so zatvorkami
+	- viditelnost
+		- ak dam pred let pub tak sa prida riadok ktory ho prida do modulu
+		- ak dam pred let priv tak sa prida riadok 
+		- priv: - vsetky dalsie membery privatne
+			- okrem tych co su oznacene inak
+		- pub: vsetky dalsie membery public
+			- okrem tych co su oznacene inak
+		- viditelnost:
+			- inou farbou v editore
+	- parametricke moduly
+		- ak je nadefinovany module s parametrami musi sa pred aplikovanim 
+    - naimplementovat generator pre moduly
+        - premenna my - aktualny modul

@@ -1,0 +1,25 @@
+{
+    "name": "sage",
+    "displayName": "Sage",
+    "description": "Sage code",
+    "version": "0.0.1",
+    "engines": {
+        "vscode": "^1.36.0"
+    },
+    "categories": [
+        "Programming Languages"
+    ],
+    "contributes": {
+        "languages": [{
+            "id": "sage",
+            "aliases": ["sage", "sage"],
+            "extensions": [".sage",".sagex",".sg"],
+            "configuration": "./language-configuration.json"
+        }],
+        "grammars": [{
+            "language": "sage",
+            "scopeName": "source.sage",
+            "path": "./syntaxes/sage.tmLanguage.json"
+        }]
+    }
+}

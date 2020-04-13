@@ -1,0 +1,30 @@
+%%/*** EXPRESSIONS ***/
+
+wrappedExpr:
+| LPAREN optSep expr optSep RPAREN { Parens $3 }
+| LPAREN optSep exprList optSep RPAREN { Convert.toExprList $3 }
+
+block:
+| LPAREN optSep expr optSep RPAREN { Block [$3] }
+| LPAREN optSep exprList optSep RPAREN { Block $3 }
+
+exprMain:
+| literalOrIdentifier { $1 }
+| wrappedExpr { $1 }
+| functionEval { $1 }
+| sendMessages { $1 }
+| func { $1 }
+| KW_IF expr optSep KW_THEN expr optSep KW_ELSE expr { If($2, $5, Some $8) }
+| KW_IF expr optSep KW_THEN expr { If($2, $5, None) }
+| KW_IF_NOT expr optSep KW_THEN expr optSep KW_ELSE expr { IfNot($2, $5, Some $8) }
+| KW_IF_NOT expr optSep KW_THEN expr { IfNot($2, $5, None) }
+| KW_MATCH expr COLON optSep optBar matchingList { Match($2, $6) }
+| opFunctional { $1 }
+
+/* FUNCTIONAL */
+opFunctional:
+| opFunctional OP_FORWARD_PIPE expr { BinaryOperator("|>", $1, $3) }
+| opFunctional OP_BACKWARD_PIPE expr { BinaryOperator("<|", $1, $3) }
+| opFunctional OP_FORWARD_COMPOSITOR expr { BinaryOperator(">>", $1, $3) }
+| opFunctional OP_BACKWARD_COMPOSITOR expr { BinaryOperator("<<", $1, $3) }
+| expr { $1 }

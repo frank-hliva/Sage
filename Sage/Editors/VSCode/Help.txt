@@ -1,0 +1,6 @@
+﻿Folder: %USERPROFILE%\.vscode\extensions
+
+https://github.com/microsoft/vscode-generator-code
+
+https://code.visualstudio.com/api/language-extensions/syntax-highlight-guide
+https://stackoverflow.com/questions/43456813/creating-visual-studio-code-extension-for-syntax-highlighting-of-a-custom-langua

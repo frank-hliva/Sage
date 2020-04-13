@@ -1,0 +1,18 @@
+%%/*** PATTERN MATCHING ***/
+
+matchingList:
+| matching { [$1] }
+| matching BAR matchingList { $1 :: $3 }
+
+matching: 
+| case OP_RARROW expr { ($1, Some $3) }
+| case { ($1, None) }
+
+case:
+| ANYTHING { case.Anything }
+| IDENTIFIER { case.CaseIdentifier $1 }
+| expr { case.Expr $1 }
+
+optBar:
+| { }
+| BAR { }

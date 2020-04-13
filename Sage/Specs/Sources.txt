@@ -1,0 +1,9 @@
+﻿https://github.com/js-open-projects/FSharp-TINY-interpreter
+https://en.wikibooks.org/wiki/F_Sharp_Programming/Lexing_and_Parsing
+http://fsprojects.github.io/FsLexYacc/fsyacc.html
+https://gist.github.com/jdh30/de3c157c12396830f439ffbfc7b9ec1a
+https://github.com/YaccConstructor/YaccConstructor
+https://github.com/vain0x/milone-lang/blob/master/boot/MiloneLang/Parsing.fs
+https://github.com/nomoid/FSharpSnake
+https://github.com/jac3km4/hawk-lang/tree/master/compiler
+https://github.com/Dynista/IMP/blob/master/IMP/Parser.fs

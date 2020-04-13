@@ -1,0 +1,19 @@
+﻿Verbose F# - čo je vlastne režim kompatibility s OCAML
+	- bude treba použiť navzájom kompatuibilnú podmnožinu jazyka
+
+a. OCaml
+b. F#: OCaml -> fantomas -> F# light syntax
+c. OCaml -> .NET CIL
+d. OCaml -> LLVM
+e. OCaml -> LLVM -> Natívne súbory
+	- X86
+	- X64
+	- Arm
+	- Windows
+	- Linux
+	- MacOS
+f. OCaml -> LLVM -> JS
+e. OCaml -> LLVM -> WebAssembly
+
+
+(https://github.com/fsprojects/fantomas)

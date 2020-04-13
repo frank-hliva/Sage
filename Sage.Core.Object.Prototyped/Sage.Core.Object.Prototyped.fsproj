@@ -1,0 +1,33 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+  
+  <ItemGroup>
+    <Content Include="Reference\Objects.txt" />
+    <Content Include="Reference\Ocaml.Compatibility.txt" />
+    <Compile Include="Core.Object.fs" />
+    <Compile Include="Core.Object.Table.fs" />
+    <Compile Include="Core.Object.Prototyped.fs" />
+    <Compile Include="Core.Object.Prototyped.Member.fs" />
+    <Compile Include="Core.Object.Prototyped.Message.fs" />
+    <Compile Include="Core.Object.Prototyped.Meta.fs" />
+    <Compile Include="Core.Object.Prototyped.Object.fs" />
+    <Compile Include="Core.Object.Prototyped.Instance.fs" />
+    <Compile Include="Core.Object.Prototyped.Self.fs" />
+    <Compile Include="Core.Object.Prototyped.Operators.fs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Test.fsx" />
+    <None Include="Test.Object.fsx" />
+    <None Include="Test.Table.fsx" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Sage.Memory\Sage.Memory.fsproj" />
+    <ProjectReference Include="..\StdLib\StdLib.fsproj" />
+  </ItemGroup>
+
+</Project>

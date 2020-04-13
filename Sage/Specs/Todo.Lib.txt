@@ -1,0 +1,5 @@
+﻿- funkcia id
+- fst
+- snd
+- JSON.parse
+- JSON.stringify

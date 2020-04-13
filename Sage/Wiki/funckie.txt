@@ -1,0 +1,32 @@
+﻿deklarácia funkcie mocnina:
+```
+let sqr = func a -> a * a
+```
+
+volanie funkcie mocnina:
+```
+sqr 5
+```
+
+deklarácia funkcie sčítanie:
+```
+let add = func a b -> a + b
+```
+
+volanie funkcie sčítanie:
+```
+log (add 2 2) # vypíše 4
+```
+
+currying (predvyplnenie 1 parametra vráti novú funkciu s 1 predvyplneným parametrom):
+```
+let add2 = add 2
+
+log (add2 5) # vypíše 7
+```
+
+kompozícia funkcií ( >> je operátor forward kompozície)
+```
+let add4 = add2 >> add2
+
+```

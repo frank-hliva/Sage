@@ -1,0 +1,28 @@
+/*** MESSAGES ***/
+
+messageList:
+| message { [$1] }
+| message OP_JOIN optBar messageList { $1 :: $4 }
+
+message:
+| key { UnaryMessage($1) }
+| binaryMessage { BinaryMessage($1) }
+| keywordMessage { KeywordMessage($1) }
+
+binaryMessage:
+| key OP_EQUALS_OR_ASSIGN expr { BinaryMessage($1, Just $3) }
+| key OP_EQUALS_OR_ASSIGN ANYTHING { BinaryMessage($1, Undefined) }
+| key OP_EQUALS_OR_ASSIGN { BinaryMessage($1, Undefined) }
+
+keywordMessage:
+| keyword { [$1] }
+| keyword BAR keywordMessage { $1 :: $3 }
+
+keyword: 
+| key COLON expr { ($1, Just $3) }
+| key COLON ANYTHING { ($1, Undefined) }
+| key COLON { ($1, Undefined) }
+| key { ($1, Placeholder) }
+
+
+| OP_STAR expr optSep optBar messageList { Message($1, $5) }

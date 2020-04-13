@@ -1,0 +1,48 @@
+%{
+
+(* Parser specification for Sage Language *)
+open Sage
+open Sage.Parsing
+open Sage.Parsing.Checks
+%} 
+
+%start start
+
+#include Tokens.fsy
+
+%type <ast> start
+
+%%
+
+start: prog EOF { $1 }
+
+prog:
+| optSep KW_MODULE key optSep exprList { [Module($3, moduleType.Root, Block $5)] |> Convert.toRootExprList }
+| optSep exprList { Convert.toRootExprList $2 }
+
+expr:
+| LPAREN optSep expr optSep RPAREN args { ExprEval($3, $6) }
+| op { $1 }
+
+stat:
+| KW_LET IDENTIFIER OP_EQUALS_OR_ASSIGN expr { Let($2, $4) }
+| moduleDef { $1 }
+
+optSep:
+| { }
+| SEPARATOR { }
+
+exprList:
+| { [] }
+| stat { [$1] }
+| stat SEPARATOR exprList { $1 :: $3 }
+| expr { [$1] }
+| expr SEPARATOR exprList { $1 :: $3 }
+
+#include Literals.fsy
+#include Modules.fsy
+#include Messages.fsy
+#include PatternMatching.fsy
+#include Functions.fsy
+#include Operators.fsy
+#include Expressions.fsy

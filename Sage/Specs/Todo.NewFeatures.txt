@@ -1,0 +1,43 @@
+﻿
+- operators
+	- ...
+	- pridat append
+	- nové využitie
+		"&" => OP_BITWISE_AND
+		"~" => OP_BITWISE_NOT
+
+- moduly
+	- module na package
+	- budú to vpodstate objekty
+	- budú fungovať podobne ako triedy v IOC kontaineroch
+	- budú obsahovať modifikátory prístupu
+		- všetko bude by default private
+		- * - verejný člen
+
+- tail rekurzia
+- nahrada za pathOr
+	- let x = @i.item.uid
+	- integrovat kniznicu ramda
+- možno Multiple dispatch ale
+
+- logicke vyrazy
+	- skratit zapis orov 
+	x === "aa" || x === "b"
+	x in ("aa", "b")
+
+	x !== "aa" && x !== "b"
+	x !in ("aa", "b")
+
+	x == "aaa" && y == "aaa"
+	(x, y) == "aaa"
+
+	x != "aaa" && y != "aaa"
+	(x, y) != "aaa"
+
+	x === "aa" || y === "b" || x === "b" || y === "aa"
+
+	(x, y) in ("aa", "b")
+
+	- skratit zapis andov x === "aaa" && y === "aaa" : x, y === "aaa"
+	- pozriet toto pre inspiraciu: https://swagger.io/docs/specification/data-models/oneof-anyof-allof-not/
+

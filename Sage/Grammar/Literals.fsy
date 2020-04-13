@@ -1,0 +1,47 @@
+﻿%%/*** LITERALS ***/
+
+primitiveLiteral:
+| STRING { Str $1 }
+| NUMBER { Number $1 }
+| SYMBOL { Convert.toSymbol $1 }
+| LPAREN RPAREN { Unit }
+
+literal:
+| primitiveLiteral { $1 }
+| listLiteral { $1 }
+| recordLiteral { $1 }
+
+identifierOrPath:
+| IDENTIFIER { Identifier $1 }
+| path { IdentifiersPath $1 }
+
+path:
+| IDENTIFIER OP_DOT path { $1 :: $3 }
+| IDENTIFIER { [$1] }
+
+literalOrIdentifier:
+| literal { $1 }
+| identifierOrPath { $1 }
+
+listLiteral:
+| LBRACKET optSep list optSep RBRACKET { List $3 }
+
+list:
+| optSep { [] }
+| optSep expr optSep { [$2] }
+| optSep expr optSep COMMA optSep list optSep { $2 :: $6 } 
+
+recordLiteral:
+| LBRACE optSep record optSep RBRACE { Record $3 }
+
+record:
+| { [] }
+| optSep key optSep COLON optSep expr optSep { [($2, $6)] }
+| optSep key optSep COLON optSep expr optSep COMMA optSep record { ($2, $6) :: $10 }
+| optSep IDENTIFIER optSep { [(Identifier $2, Identifier $2)] }
+| optSep IDENTIFIER optSep COMMA optSep record { (Identifier $2, Identifier $2) :: $6 }
+
+key:
+| IDENTIFIER { Identifier $1 }
+| STRING { Str $1 }
+| LBRACKET expr RBRACKET { $2 }

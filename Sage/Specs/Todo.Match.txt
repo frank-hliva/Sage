@@ -1,0 +1,3 @@
+﻿- v matchu sa daju pouzivat iba literaly
+- ak do matchu vlozim premennu tak sa berie ako default
+	- vyriesit

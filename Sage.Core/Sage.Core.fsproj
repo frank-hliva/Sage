@@ -1,0 +1,26 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="Utils\TypeGen.fsx" />
+    <None Include="Utils\Types.fsx" />
+    <Compile Include="Core.fs" />
+    <Compile Include="Core.Types.fs" />
+    <Compile Include="Core.Module.fs" />
+    <None Include="Modules.fsx" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="System.Runtime.CompilerServices.Unsafe" Version="4.6.0-preview8.19405.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Sage.Core.Object.Prototyped\Sage.Core.Object.Prototyped.fsproj" />
+    <ProjectReference Include="..\Sage.Memory\Sage.Memory.fsproj" />
+    <ProjectReference Include="..\StdLib\StdLib.fsproj" />
+  </ItemGroup>
+
+</Project>

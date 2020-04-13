@@ -1,0 +1,10 @@
+﻿- pouzivat kniznice kiompatibility
+- napisat pomocou tej kniznice implementaciu prototypoveho OOP
+	- nepouzivat triedy
+- vzdy 2 verzie
+	- Ocaml
+		- odstranit
+			- prepinace
+				#light "off"
+				#nowarn "62";;
+			- open FSharp.Compatibility.OCaml

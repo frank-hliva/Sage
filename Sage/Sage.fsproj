@@ -1,0 +1,95 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DefineConstants>TRACE;YACC</DefineConstants>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="Tools\MultiRename.fsx" />
+    <None Include="Editors\VSCode\Research.fsx" />
+    <Content Include="Editors\VSCode\Help.txt" />
+    <None Include="Specs\Draft\OOP.sage" />
+    <Content Include="Specs\CILtoC.txt" />
+    <Content Include="Specs\TargetPlatforms.txt" />
+    <Content Include="Wiki\funckie.txt" />
+    <Content Include="Specs\Dnes.txt" />
+    <Content Include="Specs\About.txt" />
+    <None Include="Specs\Sources.txt" />
+    <None Include="Specs\Features.txt" />
+    <None Include="Specs\Lang.txt" />
+    <Content Include="Specs\Todo.txt" />
+    <Content Include="Specs\Todo.Chyby.txt" />
+    <None Include="Specs\Todo.Ocaml.txt" />
+    <Content Include="Specs\Todo.Types.txt" />
+    <Content Include="Specs\Todo.Modules.txt" />
+    <Content Include="Specs\Todo.OOP.txt" />
+    <Content Include="Specs\Todo.Match.txt" />
+    <Content Include="Specs\Todo.String.txt" />
+    <Content Include="Specs\Todo.NewFeatures.txt" />
+    <Content Include="Specs\Todo.Lib.txt" />
+    <Content Include="Specs\Todo.Ecosystem.txt" />
+    <None Include="Research\SortedMap.fsx" />
+    <None Include="Research\TCO.js" />
+    <None Include="Research\Ocml.fsx" />
+    <None Include="Research\Ocml.Module.fsx" />
+    <None Include="Grammar\Modules.fsy" />
+    <None Include="Grammar\Tokens.fsy" />
+    <None Include="Grammar\Literals.fsy" />
+    <None Include="Grammar\Messages.fsy" />
+    <None Include="Grammar\PatternMatching.fsy" />
+    <None Include="Grammar\Functions.fsy" />
+    <None Include="Grammar\Operators.fsy" />
+    <None Include="Grammar\Expressions.fsy" />
+    <None Include="Grammar\Parsing.ParserImpl.fsy" />
+    <None Include="Grammar\build.fsx" />
+    <Compile Include="Position.fs" />
+    <Compile Include="Parsing.fs" />
+    <Compile Include="Parsing.Checks.fs" />
+    <Compile Include="Parsing.Convert.fs" />
+    <None Include="Parsing.ParserImpl.fsy" />
+    <Compile Include="Parsing.ParserImpl.fs" />
+    <Compile Include="LexicalAnalysis.fs" />
+    <Compile Include="LexicalAnalysis.Rules.fs" />
+    <Compile Include="LexicalAnalysis.Elements.fs" />
+    <Compile Include="LexicalAnalysis.Keywords.fs" />
+    <Compile Include="LexicalAnalysis.Symbols.fs" />
+    <Compile Include="LexicalAnalysis.Punc.fs" />
+    <Compile Include="LexicalAnalysis.Operators.fs" />
+    <Compile Include="LexicalAnalysis.Special.fs" />
+    <Compile Include="LexicalAnalysis.Token.fs" />
+    <Compile Include="LexicalAnalysis.String.Escape.fs" />
+    <Compile Include="LexicalAnalysis.TokenCollector.fs" />
+    <Compile Include="LexicalAnalysis.Lexer.fs" />
+    <Compile Include="Parsing.Errors.fs" />
+    <Compile Include="Parsing.PositionStore.fs" />
+    <Compile Include="Parsing.TokenStore.fs" />
+    <Compile Include="Parsing.Parser.fs" />
+    <Compile Include="Output.fs" />
+    <Compile Include="Output.ML.CodeGen.fs" />
+    <Compile Include="Output.ML.CodeGen.Messaging.Sender.fs" />
+    <Compile Include="Output.ML.CodeGen.Modules.fs" />
+    <Compile Include="Output.ML.CodeGen.Generator.fs" />
+    <None Include="GenParser.ps1" />
+    <None Include="Parser.fsx" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="FsLexYacc.Runtime" Version="9.0.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Sage.Core.Object.Prototyped\Sage.Core.Object.Prototyped.fsproj" />
+    <ProjectReference Include="..\Sage.Core\Sage.Core.fsproj" />
+    <ProjectReference Include="..\Sage.Memory\Sage.Memory.fsproj" />
+    <ProjectReference Include="..\StdLib\StdLib.fsproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Specs\Ref\" />
+  </ItemGroup>
+
+</Project>

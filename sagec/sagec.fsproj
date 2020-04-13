@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>eca262cd-2eb5-4db7-af4d-95185f1c7a8f</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>sagec</RootNamespace>
+    <AssemblyName>sagec</AssemblyName>
+    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <UseStandardResourceNames>true</UseStandardResourceNames>
+    <WarningsAsErrors>3239;$(WarningsAsErrors)</WarningsAsErrors>
+    <Name>sagec</Name>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <Tailcalls>false</Tailcalls>
+    <OutputPath>bin\$(Configuration)\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <WarningLevel>3</WarningLevel>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DocumentationFile>bin\$(Configuration)\$(AssemblyName).XML</DocumentationFile>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <Tailcalls>true</Tailcalls>
+    <OutputPath>bin\$(Configuration)\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <WarningLevel>3</WarningLevel>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DocumentationFile>bin\$(Configuration)\$(AssemblyName).XML</DocumentationFile>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <MinimumVisualStudioVersion Condition="'$(MinimumVisualStudioVersion)' == ''">11</MinimumVisualStudioVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(FSharpTargetsPath)' == '' AND Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\FSharp\Microsoft.FSharp.Targets') ">
+    <FSharpTargetsPath>$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\FSharp\Microsoft.FSharp.Targets</FSharpTargetsPath>
+  </PropertyGroup>
+  <Import Project="$(FSharpTargetsPath)" />
+  <ItemGroup>
+    <Compile Include="Examples\Call.o.ml" />
+    <Compile Include="Examples\Curry.o.ml" />
+    <Compile Include="Examples\Eval.o.ml" />
+    <Compile Include="Examples\First.o.ml" />
+    <Compile Include="Examples\ForwardEval.o.ml" />
+    <Compile Include="Examples\IfThen.o.ml" />
+    <Compile Include="Examples\Minus.o.ml" />
+    <Compile Include="Examples\NonCurried.o.ml" />
+    <Compile Include="Examples\NonParameterFunction.o.ml" />
+    <Compile Include="Examples\Objects.o.ml" />
+    <Compile Include="Examples\Pipe.o.ml" />
+    <Compile Include="Examples\Primitive.o.ml" />
+    <Compile Include="Examples\Rec.o.ml" />
+    <Compile Include="Examples\test.o.ml" />
+    <Compile Include="Examples\Simple.o.ml" />
+    <None Include="Examples\OOP\Module.fsx" />
+    <Compile Include="AssemblyInfo.fs" />
+    <Compile Include="Resources.fs" />
+    <Compile Include="Program.fs" />
+    <None Include="App.config" />
+    <Content Include="packages.config" />
+    <Compile Include="Parsing.ParserImpl.fsi" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="FSharp.Core">
+      <HintPath>..\packages\FSharp.Core.4.6.2\lib\net45\FSharp.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="mscorlib" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.ValueTuple">
+      <HintPath>..\packages\System.ValueTuple.4.4.0\lib\net461\System.ValueTuple.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Sage.Core.Object.Prototyped\Sage.Core.Object.Prototyped.fsproj">
+      <Name>Sage.Core.Object.Prototyped</Name>
+      <Project>{cbf711d2-7f5c-4e88-b468-b4c2a7f7eb53}</Project>
+      <Private>True</Private>
+    </ProjectReference>
+    <ProjectReference Include="..\Sage.Core\Sage.Core.fsproj">
+      <Name>Sage.Core</Name>
+      <Project>{e720a06a-52d8-4a72-bda4-18305b42073a}</Project>
+      <Private>True</Private>
+    </ProjectReference>
+    <ProjectReference Include="..\Sage.Memory\Sage.Memory.fsproj">
+      <Name>Sage.Memory</Name>
+      <Project>{b1301eb5-f333-496f-ac11-521d5f379553}</Project>
+      <Private>True</Private>
+    </ProjectReference>
+    <ProjectReference Include="..\Sage\Sage.fsproj">
+      <Name>Sage</Name>
+      <Project>{d143b078-e229-4d70-adde-2cd5b469ce6a}</Project>
+      <Private>True</Private>
+    </ProjectReference>
+    <ProjectReference Include="..\StdLib\StdLib.fsproj">
+      <Name>StdLib</Name>
+      <Project>{6e4192ee-61e0-4103-85b6-5a6ccad22c74}</Project>
+      <Private>True</Private>
+    </ProjectReference>
+  </ItemGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

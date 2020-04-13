@@ -1,0 +1,2 @@
+C:\MyLang\Sage\sagec\obj\Debug\sagec.fsprojAssemblyReference.cache
+C:\MyLang\Sage\sagec\obj\Debug\sagec.exe.config

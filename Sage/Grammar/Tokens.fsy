@@ -1,0 +1,102 @@
+﻿%token LPAREN           // (
+%token RPAREN           // )
+%token LBRACKET         // [
+%token RBRACKET         // ]
+%token LBRACE           // {
+%token RBRACE           // }
+%token COMMA            // ,
+%token SEPARATOR        // ; || EOL
+%token POWER		    // ^
+%token COLON		    // :
+%token BAR              // |
+%token ANYTHING         // _
+%token NON_CURRIED      // ^
+
+%token OP_LARROW        // <-
+%token OP_RARROW        // ->
+
+%token OP_STAR          // *
+%token OP_DOUBLE_STAR   // **
+%token OP_DOUBLE_RARROW // =>
+%token OP_PLUS_RARROW   // +>
+%token OP_DOT           // .
+%token OP_SHARP         // #
+%token OP_JOIN          // &
+%token OP_BACK_SLASH    // \
+
+%token <string> STRING
+%token <decimal> NUMBER
+%token <string> SYMBOL
+%token <string> IDENTIFIER
+%token <string> OPERATOR
+%token <string> SINGLELINE_COMMENT
+%token <string> MULTILINE_COMMENT
+%token <string * int> WHITESPACES
+%token <string * int> INDENTATION
+
+%token KW_LET
+%token KW_IF
+%token KW_IF_NOT
+%token KW_THEN
+%token KW_ELSE
+%token KW_ELIF
+%token KW_ELIF_NOT
+%token KW_FUNC
+%token KW_MATCH
+
+%token KW_KIND
+%token KW_PROTOCOL
+%token KW_SELF
+%token KW_MODULE
+%token KW_PACKAGE
+
+%token KW_ALLOC
+%token KW_STACKALLOC
+
+%token OP_FORWARD_PIPE
+%token OP_BACKWARD_PIPE
+%token OP_FORWARD_COMPOSITOR
+%token OP_BACKWARD_COMPOSITOR
+
+%token OP_SPECIAL_ASSIGN
+
+%token OP_XOR
+%token OP_OR
+%token OP_AND
+
+%token OP_BITWISE_XOR
+%token OP_BITWISE_OR
+%token OP_BITWISE_AND
+%token OP_BITWISE_NOT
+
+%token OP_LESS_THAN
+%token OP_LESS_THAN_OR_EQUALS
+%token OP_GREATER_THAN
+%token OP_GREATER_THAN_OR_EQUALS
+%token OP_NOT_EQUALS
+%token OP_EQUALS_OR_ASSIGN
+%token OP_EQUALS
+
+%token OP_BITWISE_ZERO_FILL_LEFT_SHIFT
+%token OP_BITWISE_SIGNED_RIGHT_SHIFT
+%token OP_BITWISE_ZERO_FILL_RIGHT_SHIFT
+
+%token OP_APPEND // unused
+
+%token OP_ADDITION
+%token OP_SUBTRACT
+
+%token OP_MULTIPLY
+%token OP_DIVIDE
+%token OP_MODULO
+
+%token OP_NOT
+%token OP_NEGATE
+%token OP_SUCCESSOR
+%token OP_PREDECESSOR
+
+%token OP_POWER
+
+%token LAMBDA
+
+%token EOF

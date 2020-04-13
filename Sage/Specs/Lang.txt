@@ -1,0 +1,17 @@
+- typova kontrola za behu
+- jeden objekt moze mat niekolko datovych typov zaroven
+- moznost nadefinovat pre kazdy typy validacne funkciu
+- moznost nadefinovat validaciu vstupov pri funkciach objektoch alebo getteroch setteroch
+- moznost nadefinovat typy aj regexom
+- moznost odvodit typ z ineho typu 
+	- moznost vytvorit alias na povodny typ
+	- moznost vytvorit novy typ nekompatibilny s predchadzajucim typom Napriklad si vytvorim typ jablka hrusky slivky vsetky budu odvodene od typu integer ziadny 
+	- moznost nadefinovat operator typovej konverzie
+		- implicitny
+		- explicitny
+- moznost vytvarat vlastne operatory
+	- akykolvek UTF-8 znak moze byt operatorom
+	- akykolvek operator je mozne predefinovat
+- vsetko je by defult immutable
+- zmena hodnoty bude mozna len vramci actorov
+- nebude obsahovat OOP ale actorov ktori si budu moct medzi sebou posielat spravy

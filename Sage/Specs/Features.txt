@@ -1,0 +1,45 @@
+﻿x - pridat operatory |> <| >> <<
+- iteratory
+- generatory
+- async / await
+- match
+	x - základný
+	- rozšírený
+- destructuring
+- Parser
+	- napísať si primitívnu funkciu ktorá z pár tokenov urobí strom
+	- podľa toho urobiť celý parser
+- Generator do JS
+- vkladanie JS
+- plain objekt / json rovnako ako v JS
+- inspiracia free basicom
+- moduly / typové triedy
+---------------------------------------------------------------------------------------------------------
+- Objekty
+	- prototypová dedičnosť
+	- self namiesto this
+	- named parameters
+- Typy
+	- Základné
+		- boolean
+		- int
+		- long
+		- single
+		- double
+		- decimal
+		- byte
+	- operatory implicit a explicit nadefinuju metodu na implicitnu alebo explicitnu konverziu
+	- možnosť vytvoriť nový typ nekompatibilný s predchádzajúcim typom
+	- možnosť vytvoriť alias
+	- typ interval
+- operátory
+	- definovanie operátorov
+		- binárnych 
+		- unárnych
+		- hociaká zmeť znakov môže byť operátor
+- highlighter a autocomplete pre VSCode
+-------------------------------------------------------------------------------------------------------
+- makrá aplikované na AST
+- atribúty AOP
+- pattern matching
+-------------------------------------------------------------------------------------------------------

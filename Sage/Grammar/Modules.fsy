@@ -1,0 +1,6 @@
+%%/*** MODULES ***/
+
+moduleDef:
+| KW_LET IDENTIFIER OP_EQUALS_OR_ASSIGN KW_MODULE key block { Let($2, Module($5, moduleType.Assign, $6)) }
+| KW_LET IDENTIFIER OP_EQUALS_OR_ASSIGN KW_MODULE block { Let($2, Module(Identifier $2, moduleType.Assign, $5)) }
+| KW_MODULE key block { Module($2, moduleType.Normal, $3) }

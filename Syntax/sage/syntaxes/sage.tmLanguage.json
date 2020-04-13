@@ -1,0 +1,157 @@
+{
+	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+	"name": "Sage",
+	"patterns": [
+		{
+			"include": "#comments"
+		},
+		{
+			"include": "#constants"
+		},
+		{
+			"include": "#keywords"
+		},
+		{
+			"include": "#anonymous_functions"
+		},
+		{
+			"include": "#definition"
+		},
+		{
+			"include": "#numeric"
+		},
+		{
+			"include": "#strings"
+		}
+	],
+	"repository": {
+		"comments": {
+			"patterns": [
+				{
+					"begin": "#\\(",
+					"beginCaptures": {
+						"0": {
+							"name": "punctuation.definition.comment.begin.sage"
+						}
+					},
+					"end": "\\)#",
+					"endCaptures": {
+						"0": {
+							"name": "punctuation.definition.comment.end.sage"
+						}
+					},
+					"name": "comment.block.css"
+				},
+				{
+					"begin": "#",
+					"beginCaptures": {
+						"0": {
+							"name": "punctuation.definition.comment.sage"
+						}
+					},
+					"end": "^",
+					"name": "comment.line.double-slash.sage"
+				}
+			]
+		},
+		"constants": {
+			"patterns": [
+				{
+					"match": "\\b(true|false|nil|null)\\b",
+					"name": "keyword.control.sage"
+				},
+				{
+					"match": "(\\(\\))",
+					"name": "keyword.control.sage"
+				}
+			]
+		},
+		"keywords": {
+			"patterns": [
+				{
+					"name": "keyword.sage",
+					"match": "\\b(let|kind|protocol|self|module|package|alloc|stackalloc)\\b"
+				},
+				{
+					"name": "keyword.control.sage",
+					"match": "\\b(if|ifnot|then|else|elif|elifnot|match)\\b"
+				},
+				{
+					"name": "keyword.symbol.sage",
+					"match": "(\\\\|#|&|&&&|\\|\\|\\||\\^\\^\\^|~~~|<<<|>>>|\\|>|\\->|\\<\\-|:>|:\\?>|:|\\[|\\]|\\;|<>|=|@|\\|\\||&&|{|}|\\||_|\\.\\.|\\,|\\+|\\*|\\-|\\/|\\^|\\!|\\>|\\>\\=|\\>\\>|\\<|\\<\\=|\\(|\\)|\\<\\<)"
+				}
+			]
+		},
+		"anonymous_functions": {
+			"patterns": [
+				{
+					"name": "function.anonymous",
+					"begin": "\\b(func|λ)\\b",
+					"end": "(->)",
+					"beginCaptures": {
+						"1": {
+							"name": "keyword.sage"
+						}
+					},
+					"endCaptures": {
+						"1": {
+							"name": "keyword.sage"
+						}
+					},
+					"patterns": [
+						{
+							"include": "#comments"
+						},
+						{
+							"begin": "(\\()",
+							"end": "\\s*(?=(->))",
+							"beginCaptures": {
+								"1": {
+									"name": "keyword.symbol.sage"
+								}
+							},
+							"endCaptures": {
+								"1": {
+									"name": "keyword.symbol.sage"
+								}
+							},
+							"patterns": [
+								{
+									"include": "#member_declaration"
+								}
+							]
+						},
+						{
+							"include": "#variables"
+						}
+					]
+				}
+			]
+		},
+		"numeric": {
+			"patterns": [
+				{
+					"comment": "0.1, -4_2.5, 6.022e23, 10E-5",
+					"match": "(\\B\\-|\\b)(?<![\\[\\](){}\\p{L}_\\p{N}\\p{M}]\\.)[0-9][0-9_]*(?=\\.[0-9]|[eE])(?:\\.[0-9][0-9_]*)?(?:[eE][-+]?[0-9][0-9_]*)?\\b(?!\\.[0-9])",
+					"name": "constant.numeric.float.decimal.sage"
+				},
+				{
+					"match": "(\\B\\-|\\b)[0-9][\\w.]*",
+					"name": "constant.numeric.float.decimal.sage"
+				}
+			]
+		},
+		"strings": {
+			"name": "string.quoted.double.sage",
+			"begin": "\"",
+			"end": "\"",
+			"patterns": [
+				{
+					"name": "constant.character.escape.sage",
+					"match": "\\\\."
+				}
+			]
+		}
+	},
+	"scopeName": "source.sage"
+}

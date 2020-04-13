@@ -1,0 +1,32 @@
+%%/*** MESSAGES ***/
+
+sendMessages:
+| receiver optSep optBar messageList { SendMessages($1, $4) }
+
+receiver:
+| OP_STAR literalOrIdentifier { $2 }
+| OP_STAR LPAREN optSep expr optSep RPAREN { $4 |> Parens }
+
+messageList:
+| message { [(Msg $1)] }
+| message OP_FORWARD_PIPE optBar messageList { (Msg $1) :: Pipe :: $4 }
+| message OP_JOIN optBar messageList { (Msg $1) :: Join :: $4 }
+
+message:
+| binaryMessage { BinaryMessage($1) }
+| keywordMessage { $1 |> KeywordMessage.toMessage }
+
+binaryMessage:
+| key OP_EQUALS_OR_ASSIGN expr { binaryMessage.Value($1, $3) }
+| key OP_EQUALS_OR_ASSIGN ANYTHING { binaryMessage.Undefined($1) }
+| key OP_EQUALS_OR_ASSIGN { binaryMessage.Undefined($1) }
+
+keywordMessage:
+| keyword { [$1] }
+| keyword optBar keywordMessage { $1 :: $3 }
+
+keyword:
+| key COLON expr { keyword.Value($1, $3) }
+| key COLON ANYTHING { keyword.Undefined($1) }
+| key COLON { keyword.Undefined($1) }
+| key { keyword.Placeholder($1) }

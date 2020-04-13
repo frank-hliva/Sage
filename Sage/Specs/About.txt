@@ -1,0 +1,76 @@
+﻿- Názvy
+	Jazyk: Sage
+	Framework: Universe
+	Aplikčný framework: Domino
+
+	Sage - funkcionálno - objektový programovací jazyk kompilovatelný do Javascriptu, natívneho kódu pre X86-64 aj ARM, .NET CIL, LLVM, HLVM
+	
+	- Funkcionálna paradigma
+		- currying, curried funkcie, čistočne aplikované parametre
+		- operátory forward pipe, backward pipe, forward composition, backward composition
+		- moduly
+		- operátor export * 
+	- Objektová paradigma
+		- message passing (na štýl Objective C) <:
+		- prototypové OOP (na štýl selfu a JS)
+
+	Objektové programovanie: Jazyk podporuje prototypové OOP na štýl selfu a JS a message passing na štýl Objective C
+
+- Názvy
+	- Raspberry
+	- Glow
+	- Torch
+	- Ghost
+	- Kit
+	- Factor
+	- Cell
+
+	- Arrow
+	- Twist
+	- Aero
+	- Domino
+---------------------------
+	- Sage
+- Framework
+	- Universe
+Domino
+
+
+- Multiparadigamtický jazyk pre vývoj webových (React), desktopových a mobilných aplikácií
+	- preferuje funkcionálne a objektové programovanie
+	- má prototypové OOP
+	- posielanie správ (ako v pure objektových jazykoch)
+
+Syntax
+
+Je to jazyk z rodiny ML syntakticky najviac pripomína OCAML a F#, ale oproti nim má zjednodušeňú syntax. Tieto dva jazyky mi boli inšpiráciou hlavne preto, že som zatiaľ na poli programovacích jazykov po syntaktickej stránke nič lepšie nevidel tá ich syntax je plná nápadov a skoro dokonalá a na funkcionálne programovanie sedí ako riť na šerbeľ. Je tu však pár problémov, dosť vážnych problémov, ktoré ju naopak moc komplikujú a sťažujú jej pochopenie pre nováčikov a ktoré som sa práve snažil vyriešiť. Narozdiel od OCAML sa nepoužívajú ;; ani keyword "in" narozdiel od F# sa zase nepoužíva odsadzovanie ala python (v F# je to odsadzovanie dosť zvláštne vymyslené a komplikovaniejšie ako v pythone). Všetko je výraz takže všade môžem buďto vložiť jednodychý výraz, alebo ak ich chcem miesto jedného výrazu použiť viac tak ich ozátvorkujem. Na všetko sa používa 1 typ zátvoriek "(" + ")" či ide o výpočet alebo "blok kódu". Znak ; na konci riadku je nepovinný samozrejme môžete ho tam viac. Stredník sa používa len ak chcem na jeden riadok vložiť viac výrazov. Samozrejme aj vtedy ich treba ozátvorkovať. Proste enter a stredník jazyk berie ako ten istý znak. Syntax OOP nepripomína žiaden z jazykov z rodiny ML je inšpirovaná SMALLtalkom a Selfom, ale tak aby pasovala do nášho jazyka a vylepšená o pár zaujímavých nápadov zase nepoužíva "[" "]" zátvorky nie sú povinné ale ak ich niekde potrebujem tak použijem jednoduché zátvorky "(" ")". Ale o tom viac v sekcii OOP. Literály som prispôsobil JSku. To znamená že "{", "}" sa používa na to čo v JS voláme objekty (v našom jazyku tomu hovoríme record). To isté platí aj pre "[" a "]" ktoré sa používajú na zoznamy. 
+
+Príklad záznamu (record) v jazyku Sage:
+
+{ prop1: "def", prop2: true, abc: null }
+
+v našom jazyku platí to čo v JS taže:
+
+let nazovProp = "prop3"
+let nazovInejProp = "prop3"
+{ abc: "def", "prop2": true, [nazovProp]: "Xyz", nazovInejProp }
+
+Príklad zoznamu (list) v jazyku Sage:
+
+[1,2,3]
+
+Takže všetky literály sú plne kompatibilné s JS čo prináša výhodu v tom že je jazyk natívne podporuje formát JSON. (POZN: nezabudnite že podľa šepcifikácie v JSONe musia byť všetky kľúče v úvodzovkách)
+
+Náš jazyk používa symbol "nil", ale podporuje aj jeho alias "null" práve kôli kompatibite s formátom JSON teda null = nil.
+
+Jazyk je najviac ínšpirovaný jazykmi Ocaml, F# a Swift, ďalej Selfom, Smalltalkom, JS, Haskellom, Adou a Eiffelom
+
+Cielové platformy:
+	- JavaScript
+	- WebAssembly
+	- Natívne binárky Windows (X86, X64, ARM)
+	- Natívne binárky Mac OS (X86, X64, ARM)
+	- Natívne binárky Linux (X86, X64, ARM)
+	- LLVM
+	- .NET
+	- HLVM

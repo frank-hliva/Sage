@@ -1,0 +1,13 @@
+﻿- vycleanovat
+- vytvorit git rep
+- ulozit na 
+- zmenit plugin do vscode
+
+
+- moznost volat funkciu ktora bude nadefinovana az neskor
+- moznost volat funkciu ktorej nazov bude z expr
+- std lib pre vsetky subory
+- typy
+- operator .
+- moduly
+- destructuring

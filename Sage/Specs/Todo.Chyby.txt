@@ -1,0 +1,3 @@
+﻿- generovanie stringu
+	- "Hello world\n" sa skompiluje na "Hello world
+" čo neni dobre

@@ -1,0 +1,28 @@
+﻿- potrebujem jeden univerzalny typ do ktoreho viem ulozit hodnotu hociakeho typu
+- zistit ako pomocou nativeptr skonvertovat typ na byte array
+- zistit ako sa alokuje pamet
+
+
+- budeme mat primitivne typy
+- budeme mat komplexne typy
+	- table
+		- table nebude obj ale 
+
+- budeme mat typ dynamic pozostavajuci zo vsetkych typov
+- budeme mat uzivatelsky definovane typy
+	- po priodani noveho typu sa mu vygeneruje ciselny identifikator
+
+
+- function
+- vymysliet ako sa poriesia kluce u
+	- Record of IDictionary<ValueTypes, ValueTypes>
+	- Map of Map<string, ValueTypes>
+
+
+- operacie nad typmi
+	- +
+	- *
+
+- table prerobit z obj na ValueTypes
+
+Ja by som povedal že liberalizmus začal po vyhnaní z raja  keď dal Boh človeku rozum a slobodnú vôlu. Slobodná vôla znamená že ťa nikto ku konaniu dobra nemá nútiť a ty ho máš konať z vlastného presvedčenia. A o tom hovorí aj Ježiš dobro máme konať z lásky a z vlastného presvedčenia nie zo strachu lebo kto koná dobro zo strachu nebude spasený. Ježiš bol klasický liberál a dal to jasne najavo aj tým že umyl nohy prostitútke.Samozrejme ježiš nenávidel farizejstvo a pokrytectvo a rovnakí pokritci ako farizeji sú bohužiaľ aj ľudia ktorí sa hlásia k jeho učeniu ale  v skutočnosti ich vedie satan.

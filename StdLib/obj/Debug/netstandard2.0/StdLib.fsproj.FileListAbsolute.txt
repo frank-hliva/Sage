@@ -1,0 +1,16 @@
+C:\MyLang\Sage\StdLib\bin\Debug\netstandard2.0\StdLib.deps.json
+C:\MyLang\Sage\StdLib\bin\Debug\netstandard2.0\StdLib.dll
+C:\MyLang\Sage\StdLib\bin\Debug\netstandard2.0\StdLib.pdb
+C:\MyLang\Sage\StdLib\obj\Debug\netstandard2.0\StdLib.AssemblyInfoInputs.cache
+C:\MyLang\Sage\StdLib\obj\Debug\netstandard2.0\StdLib.AssemblyInfo.fs
+C:\MyLang\Sage\StdLib\obj\Debug\netstandard2.0\StdLib.dll
+C:\MyLang\Sage\StdLib\obj\Debug\netstandard2.0\StdLib.pdb
+C:\MyLang\Sage\StdLib\obj\Debug\netstandard2.0\StdLib.fsprojAssemblyReference.cache
+c:\Pluton.Projects\MyLang\Sage\StdLib\bin\Debug\netstandard2.0\StdLib.deps.json
+c:\Pluton.Projects\MyLang\Sage\StdLib\bin\Debug\netstandard2.0\StdLib.dll
+c:\Pluton.Projects\MyLang\Sage\StdLib\bin\Debug\netstandard2.0\StdLib.pdb
+c:\Pluton.Projects\MyLang\Sage\StdLib\obj\Debug\netstandard2.0\StdLib.fsprojAssemblyReference.cache
+c:\Pluton.Projects\MyLang\Sage\StdLib\obj\Debug\netstandard2.0\StdLib.AssemblyInfoInputs.cache
+c:\Pluton.Projects\MyLang\Sage\StdLib\obj\Debug\netstandard2.0\StdLib.AssemblyInfo.fs
+c:\Pluton.Projects\MyLang\Sage\StdLib\obj\Debug\netstandard2.0\StdLib.dll
+c:\Pluton.Projects\MyLang\Sage\StdLib\obj\Debug\netstandard2.0\StdLib.pdb

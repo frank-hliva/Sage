@@ -1,0 +1,16 @@
+x - zbavit sa (( a ))
+x - za kazdy let pojde in
+x - doriesit IfThen alert 5 + 5
+	x - dat prec zatvorky okolo volania funkcii
+	x - pridat ExprList tam kam patri
+x - doriesit test
+x - doriesit Rec
+
+- kompilacia do LLVM
+- kompilacia do JS
+- nakolko sme v OCAML zistit ci funguje spajanie retazcov operatorom (+)
+- viac ciselnych typov
+- poriadne odtestovat wrapExpr
+- emit
+
+https://sharplab.io/
